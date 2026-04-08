@@ -1,0 +1,125 @@
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  color:#2b2b2b;
+  background:#f6a161;
+  overflow-x:hidden;
+}
+.page{
+  position:relative;
+  min-height:100vh;
+  display:grid;
+  grid-template-columns: 1fr minmax(320px, 560px) 1fr;
+  gap:2rem;
+  align-items:center;
+  justify-items:center;
+  padding:24px;
+}
+.bg{
+  position:fixed;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:-2;
+  opacity:.35;
+  pointer-events:none;
+  filter:saturate(1.1);
+}
+.poster{
+  height:90vh;
+  max-height:920px;
+  object-fit:contain;
+  grid-column:1 / span 1;
+  display:none;
+}
+.game{
+  grid-column:2 / span 1;
+  text-align:center;
+  width:min(92vw, 560px);
+}
+.brand{
+  font-weight:700;
+  letter-spacing:.5px;
+  color:#fff;
+  text-shadow:0 1px 1px rgba(0,0,0,.2);
+}
+.title{
+  margin:.25rem 0 0;
+  font-weight:900;
+  line-height:1.05;
+  color:#fff;
+  text-shadow:0 2px 4px rgba(0,0,0,.2);
+  font-size: clamp(28px, 3.8vw, 56px);
+}
+.subtitle{
+  color:#fff;
+  opacity:.95;
+  margin:.5rem 0 1.25rem;
+  font-weight:600;
+}
+.wheel-wrap{
+  position:relative;
+  width:min(88vw, 520px);
+  aspect-ratio:1/1;
+  margin-inline:auto;
+}
+.wheel{
+  width:100%;
+  height:100%;
+  display:block;
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,.25));
+  transform: rotate(var(--angle, 0deg));
+  transition: transform var(--duration, 2s) cubic-bezier(.17,.67,.26,1.17);
+  will-change: transform;
+}
+.arrow{
+  position:absolute;
+  width:40px;
+  left:50%;
+  top:50%;
+  translate:-50% -50%;
+  pointer-events:none;
+  filter: drop-shadow(0 6px 10px rgba(0,0,0,.35));
+}
+.spin{
+  margin-top:16px;
+  border:0;
+  background:transparent;
+  cursor:pointer;
+  display:grid;
+  place-items:center;
+  margin-inline:auto;
+}
+.spin img{
+  width:200px;
+  pointer-events:none;
+}
+.spin span{
+  position:absolute;
+  font-weight:800;
+  letter-spacing:2px;
+  color:#fff;
+  text-shadow:0 2px 8px rgba(0,0,0,.4);
+  font-size:22px;
+}
+.spin:disabled{opacity:.7; filter:grayscale(.2); cursor:not-allowed}
+
+.result{
+  margin-top:1rem;
+  background:rgba(255,255,255,.2);
+  color:#1b1b1b;
+  font-weight:800;
+  border-radius:14px;
+  padding:12px 16px;
+  display:inline-block;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 6px 14px rgba(0,0,0,.15);
+}
+
+@media (min-width: 1000px){
+  .poster{display:block}
+  .page{grid-template-columns: 1fr 560px 1fr}
+}
